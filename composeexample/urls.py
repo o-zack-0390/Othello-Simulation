@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 
 urlpatterns = [
-    path('othello/', include('othello.urls')),
+    #url(r'^othello_apps/', include('othello_apps.urls')),
+    path('othello_apps/', include('othello_apps.urls')),
     url(r'^admin/', admin.site.urls),
 ]

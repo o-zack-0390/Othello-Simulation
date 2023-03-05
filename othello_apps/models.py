@@ -22,8 +22,11 @@ class Status(models.Model):
 # 駒のスキル
 class Skill(models.Model):
 
-#   name : 駒名
-    name = models.CharField(blank=False, null=False, max_length=50)
+#   外部キー             : Statusを参照
+    status             = models.ForeignKey(Status, on_delete=models.CASCADE)
+
+#   name               : 駒名
+    name               = models.CharField(blank=False, null=False, max_length=50)
 
 #   start_f_normal_s1  : (通常ダメージ, 固定, 最小値)
     start_f_normal_s1  = models.IntegerField(blank=True, null=True)
@@ -67,11 +70,17 @@ class Skill(models.Model):
 #   barrier_s1         : バリア値
     barrier_s1         = models.IntegerField(blank=True, null=True)
 
+#   barrier_return_s1  : バリアの残ダメージ
+    barrier_return_s1  = models.DecimalField(blank=True, null=True)
+
+#   barrier_type_s1    : バリアのタイプ → 「通常」 or 「特殊」
+    barrier_type_s1    = models.CharField(blank=False, null=False, max_length=10)
+
 #   upper_m_type_s1    : 倍率上昇の形式 → 「演算方式」or「加算方式」 (固定ダメージの場合はnull)
-    upper_m_type_s1    = models.CharField(blank=True, null=True)
+    upper_m_type_s1    = models.CharField(blank=True, null=True, max_length=10)
 
 #   target_type_s1     : 倍率上昇が「自分の駒数依存」 or 「相手の駒数依存」
-    target_type_s1     = models.CharField(blank=True, null=True)
+    target_type_s1     = models.CharField(blank=True, null=True, max_length=10)
 
 #   active_turn_s1     : (スキル継続ターン数)
     active_turn_s1     = models.PositiveSmallIntegerField(blank=False, null=False)
@@ -83,8 +92,11 @@ class Skill(models.Model):
 # 駒のコンボスキル
 class Combo_Skill(models.Model):
 
-#   name : 駒名
-    name = models.CharField(blank=False, null=False, max_length=50)
+#   外部キー             : Statusを参照
+    status             = models.ForeignKey(Status, on_delete=models.CASCADE)
+
+#   name               : 駒名
+    name               = models.CharField(blank=False, null=False, max_length=50)
 
 #   start_f_normal_s2  : (通常ダメージ, 固定, 最小値)
     start_f_normal_s2  = models.IntegerField(blank=True, null=True)
@@ -128,14 +140,45 @@ class Combo_Skill(models.Model):
 #   barrier_s2         : バリア値
     barrier_s2         = models.IntegerField(blank=True, null=True)
 
+#   barrier_return_s2  : バリアの残ダメージ
+    barrier_return_s2  = models.DecimalField(blank=True, null=True)
+
+#   barrier_type_s2    : バリアのタイプ → 「通常」 or 「特殊」
+    barrier_type_s2    = models.CharField(blank=False, null=False, max_length=10)
+
 #   upper_m_type_s2    : 倍率上昇の形式 → 「演算方式」or「加算方式」 (固定ダメージの場合はnull)
-    upper_m_type_s2    = models.CharField(blank=True, null=True)
+    upper_m_type_s2    = models.CharField(blank=True, null=True, max_length=10)
 
 #   target_type_s2     : 倍率上昇が「自分の駒数依存」 or 「相手の駒数依存」
-    target_type_s2     = models.CharField(blank=True, null=True)
+    target_type_s2     = models.CharField(blank=True, null=True, max_length=10)
 
 #   active_turn_s2     : (スキル継続ターン数)
     active_turn_s2     = models.PositiveSmallIntegerField(blank=False, null=False)
+
+    def __str__(self):
+        return self.name
+
+
+# 防御駒の定義
+class Shield(models.Model):
+    
+#   id          : 番号
+    id          = models.IntegerField(blank=False, null=False, primary_key=True)
+
+#   name        : 駒名
+    name        = models.CharField(blank=False, null=False, max_length=50)
+
+#   normal_cut  : 通常カット率
+    normal_cut  = models.IntegerField(blank=True, null=True)
+
+#   special_cut : 特殊カット率
+    special_cut = models.IntegerField(blank=True, null=True)
+
+#   cut_type    : 「表になっている間」 or 「ひっくり返されたとき」
+    cut_type    = models.CharField(blank=False, null=False, max_length=10)
+
+#   active_turn : (スキル継続ターン数)
+    active_turn = models.PositiveSmallIntegerField(blank=False, null=False)
 
     def __str__(self):
         return self.name
