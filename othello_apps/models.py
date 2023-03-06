@@ -91,7 +91,7 @@ class Skill(models.Model):
 #   summons_s1         : 召喚駒
     summons_s1         = models.CharField(blank=True, null=True, max_length=50)
 
-#   active_turn_s1     : (スキル継続ターン数)
+#   active_turn_s1     : スキル継続ターン数
     active_turn_s1     = models.PositiveSmallIntegerField(blank=False, null=False)
 
     def __str__(self):
@@ -167,7 +167,7 @@ class Combo_Skill(models.Model):
 #   summons_s2         : 召喚駒
     summons_s2         = models.CharField(blank=True, null=True, max_length=50)
 
-#   active_turn_s2     : (スキル継続ターン数)
+#   active_turn_s2     : スキル継続ターン数
     active_turn_s2     = models.PositiveSmallIntegerField(blank=False, null=False)
 
     def __str__(self):
@@ -198,7 +198,7 @@ class Shield(models.Model):
 #   cut_type    : 「表になっている間」 or 「ひっくり返されたとき」
     cut_type    = models.CharField(blank=False, null=False, max_length=10)
 
-#   active_turn : (スキル継続ターン数)
+#   active_turn : スキル継続ターン数
     active_turn = models.PositiveSmallIntegerField(blank=False, null=False)
 
     def __str__(self):
