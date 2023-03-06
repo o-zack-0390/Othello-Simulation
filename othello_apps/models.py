@@ -49,6 +49,9 @@ class Skill(models.Model):
 #   is_shield_pass_s1  : 貫通スキルか判定
     is_shield_pass_s1  = models.BooleanField(blank=True, null=True)
 
+#   is_debuff_pass_s1  : デバフ無効スキルか判定
+    is_debuff_pass_s1  = models.BooleanField(blank=True, null=True)
+
 #   start_f_special_s1 : (特殊ダメージ, 固定, 最小値)
     start_f_special_s1 = models.IntegerField(blank=True, null=True)
 
@@ -119,6 +122,12 @@ class Combo_Skill(models.Model):
 #   is_shield_pass_s2  : 貫通スキルか判定
     is_shield_pass_s2  = models.BooleanField(blank=True, null=True)
 
+#   is_shield_pass_s1  : 貫通スキルか判定
+    is_shield_pass_s2  = models.BooleanField(blank=True, null=True)
+
+#   is_debuff_pass_s1  : デバフ無効スキルか判定
+    is_debuff_pass_s2  = models.BooleanField(blank=True, null=True)
+
 #   start_f_special_s2 : (特殊ダメージ, 固定, 最小値)
     start_f_special_s2 = models.IntegerField(blank=True, null=True)
 
@@ -167,6 +176,12 @@ class Shield(models.Model):
 
 #   name        : 駒名
     name        = models.CharField(blank=False, null=False, max_length=50)
+
+#   debuff      : 通常デバフ率
+    debuff      = models.IntegerField(blank=True, null=True)
+
+#   coercion    : 威圧
+    coercion    = models.IntegerField(blank=True, null=True)
 
 #   normal_cut  : 通常カット率
     normal_cut  = models.IntegerField(blank=True, null=True)
