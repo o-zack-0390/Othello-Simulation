@@ -4,7 +4,7 @@ from django.db import models
 class Status(models.Model):
     
 #   id     : 番号
-    id     = models.IntegerField(blank=False, null=False, primary_key=True)
+    id     = models.IntegerField(blank=False, null=False)
 
 #   rarity : 「S」 or 「A」 or [B]
     rarity = models.CharField(blank=False, null=False, max_length=5)
