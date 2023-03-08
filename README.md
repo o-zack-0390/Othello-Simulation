@@ -2,7 +2,7 @@
 <a href="https://othellonia.com/">オセロゲーム</a>のダメージ計算をシミュレーションするシステムを作成していく。<br><br>
 
 <h3>フレームワーク</h3>
-・Docker<br>
+・Docker (勉強目的で使用している感が若干ある)<br>
 ・Django<br><br>
 
 <h3>データベース</h3>
